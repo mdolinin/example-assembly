@@ -3,14 +3,26 @@ sudo: required
 addons:
   firefox: "50.0.2"
 
+services:
+  - docker
+
 language: scala
 
 before_install:
   - "export DISPLAY=:99.0"
   - "/sbin/start-stop-daemon --start --quiet --pidfile /tmp/custom_xvfb_99.pid --make-pidfile --background --exec /usr/bin/Xvfb -- :99 -ac -screen 0 1920x1080x16"
   - ./project/travis/install-geckodriver.sh
+  - curl -sSL https://minimesos.org/install | sh
+  - export PATH=$PATH:$HOME/.minimesos/bin
 
 jdk: oraclejdk8
 
 scala:
    - 2.11.8
+
+script:
+  - minimesos up
+  - sbt ++$TRAVIS_SCALA_VERSION test
+  - docker ps
+  - minimesos info
+  - minimesos destroy
