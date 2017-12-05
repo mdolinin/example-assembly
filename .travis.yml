@@ -1,3 +1,5 @@
+sudo: required
+
 addons:
   firefox: "55.0"
 
