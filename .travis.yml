@@ -1,7 +1,7 @@
 sudo: required
 
 addons:
-  firefox: "55.0"
+  firefox: "50.0.2"
 
 language: scala
 
