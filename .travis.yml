@@ -22,7 +22,9 @@ scala:
 
 script:
   - minimesos up
+  - ./project/script/deploy-app.sh
   - sbt ++$TRAVIS_SCALA_VERSION test
   - docker ps
   - minimesos info
+  - ./project/script/delete-app.sh
   - minimesos destroy
