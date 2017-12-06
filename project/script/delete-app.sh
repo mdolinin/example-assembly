@@ -1,4 +1,4 @@
 #!/bin/bash
 set -ex
 
-curl -X DELETE http://localhost:8080/v2/apps/basic-3
+curl -X DELETE ${MINIMESOS_MARATHON}/v2/apps/web-app
